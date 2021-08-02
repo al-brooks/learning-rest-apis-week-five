@@ -14,7 +14,7 @@ function displayMovieDetails(button) {
     const movieDetails = `
         <h1>${movieDetailsObject.Title}</h1>
         <img src = '${movieDetailsObject.Poster}' />
-        <p>${movieDetailsObject.Plot}</p>
+        <p id='movieDescription'>${movieDetailsObject.Plot}</p>
     `;
 
     movieDisplay.innerHTML = movieDetails;

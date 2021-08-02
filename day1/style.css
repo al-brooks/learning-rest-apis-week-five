@@ -1,8 +1,26 @@
 body {
+  font-family: 'Source Sans Pro', sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #e5e5e5;
+  margin: 0;
+}
+
+#mainHeader {
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: #14213d;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#movieSearch {
+  height: 15px;
+  margin: 0px 30px 0px;
 }
 
 #mainContent {
@@ -12,25 +30,36 @@ body {
 }
 
 #movieList {
-  border: 5px solid black;
+  border: 5px solid #14213d;
+  border-radius: 10px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  color: #14213d;
 }
 
 #movieDisplay {
-  border: 5px solid black;
+  border-radius: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: #14213d;
+  color: #fff;
+}
+
+#movieDescription {
+  width: 70%;
 }
 
 .movieBox {
   display: flex;
   flex-direction: row;
-  border: 3px solid green;
+  /* border: 3px solid green; */
+  margin: 10px 0px 10px;
+  padding: 0px 10px;
   width: 175px;
 }
 
@@ -40,24 +69,22 @@ body {
 }
 
 .movieTitle:hover {
-  color: orange;
+  color: #fca311;
 }
 
 .movieTitle {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 100px;
 }
 
 @media (min-width: 668px) and (max-width: 1048px) {
   #movieDisplay {
-    border: 5px solid black;
     width: 70%;
     display: flex;
     flex-direction: column;
   }
 
   #movieList {
-    border: 5px solid black;
     width: 70%;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -67,14 +94,12 @@ body {
 
 @media (min-width: 1050px) {
   #movieDisplay {
-    border: 5px solid black;
     width: 60%;
     display: flex;
     flex-direction: column;
   }
 
   #movieList {
-    border: 5px solid black;
     width: 60%;
     justify-content: flex-start;
     flex-wrap: wrap;
