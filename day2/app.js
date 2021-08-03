@@ -13,6 +13,22 @@ function getAllOrders(completed) {
   });
 }
 
+// function getUserOrders(completed) {
+//   const searchEmail = searchEmailText.value;
+//   let request = new XMLHttpRequest();
+//   request.open(
+//     'GET',
+//     `https://troubled-peaceful-hell.glitch.me/orders/${searchEmail}`
+//   );
+//   request.send();
+
+//   request.addEventListener('load', function () {
+//     const orders = JSON.parse(this.responseText);
+//     //   console.log(orders);
+//     completed(orders);
+//   });
+// }
+
 // code-block: Display orders format function
 function displayOrders(orders) {
   // api data is in an array
@@ -30,6 +46,12 @@ function displayOrders(orders) {
   ordersUL.innerHTML = orderItems.join('');
 }
 
+// complete: Get all orders - display on webpage
+// call the get orders function and call display in it
+getAllOrders(function (orders) {
+  displayOrders(orders);
+});
+
 // complete: Create variables for HTML element
 const searchEmailText = document.getElementById('searchEmailText');
 const saveBtn = document.getElementById('saveBtn');
@@ -41,13 +63,6 @@ const submitOrderBtn = document.getElementById('submitOrderBtn');
 const deleteEmailText = document.getElementById('deleteEmailText');
 const deleteOrderBtn = document.getElementById('deleteOrderBtn');
 const ordersUL = document.getElementById('ordersUL');
-
-// complete: Get all orders - display on webpage
-
-// code-block: call the get orders function and call display in it
-getAllOrders(function (orders) {
-  displayOrders(orders);
-});
 
 // complete: Create new order
 submitOrderBtn.addEventListener('click', function () {
@@ -86,11 +101,20 @@ submitOrderBtn.addEventListener('click', function () {
 
     ordersUL.insertAdjacentHTML('beforeend', orderItem);
   });
+
+  getAllOrders(function (orders) {
+    displayOrders(orders);
+  });
 });
 
 // To-do: Get order by email
+saveBtn.addEventListener('click', function () {
+  getUserOrders(function (orders) {
+    displayOrders(orders);
+  });
+});
 
-// To-do: Delete Order by email
+// complete: Delete Order by email
 deleteOrderBtn.addEventListener('click', function () {
   const delEmail = deleteEmailText.value;
 
@@ -102,6 +126,8 @@ deleteOrderBtn.addEventListener('click', function () {
   );
 
   request.send();
-});
 
-order = { success: false, messge: 'Required fields are missing!' };
+  getAllOrders(function (orders) {
+    displayOrders(orders);
+  });
+});
