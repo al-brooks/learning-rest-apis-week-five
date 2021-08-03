@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment - Coffee Orders</title>
+  </head>
+  <body>
+    <nav id="searchBar">
+      <h4>Search For Orders</h4>
+      <input type="text" id="searchEmailText" placeholder="enter email" />
+      <button id="saveBtn">Search</button>
+    </nav>
+    <section id="placeOrderSection">
+      <h4>Place An Order</h4>
+      <input type="text" id="orderEmailText" placeholder="enter email" />
+      <input type="text" id="orderType" placeholder="enter your order" />
+      <input type="text" id="orderSize" placeholder="enter your order size" />
+      <input
+        type="number"
+        id="orderQuantity"
+        placeholder="enter order quantity"
+      />
+      <button id="submitOrderBtn">Place Order</button>
+    </section>
+    <section id="deleteOrderSection">
+      <h4>Delete An Order</h4>
+      <input type="text" id="deleteEmailText" placeholder="enter email" />
+      <button id="deleteOrderBtn">Delete Orders</button>
+    </section>
+    <section>
+      <h4>See Orders Below</h4>
+      <ul id="ordersUL"></ul>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
