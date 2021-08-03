@@ -28,12 +28,17 @@ function displayMovieDetails(button) {
 const movieList = document.getElementById('movieList');
 const movieDisplay = document.getElementById('movieDisplay');
 
+// to-do: create functions to separate these request functions
+// make it more readable.
+
 // to-do: create initial page load API
 let request = new XMLHttpRequest();
 
 request.addEventListener('load', function () {
   const movieObject = JSON.parse(this.responseText);
 
+  // note: the below limits your display options
+  // how can you separate these actions out?
   const movieArr = movieObject.Search;
   const movieListItems = movieArr.map(function (movie) {
     const movieItem = `
