@@ -1,20 +1,6 @@
 // complete: Get All Orders Function
-function getAllOrders(fetchedOrders) {
-  fetch(GET_ALL_ORDERS_URL)
-    .then((response) => {
-      return response.json();
-    })
-    .then((orders) => {
-      fetchedOrders(orders);
-    })
-    .catch((error) => {
-      console.log('error fetching data');
-    });
-}
-
-// in-progress: Get User Orders Function
-function getUserOrders(fetchedOrders, email) {
-  fetch(email)
+function getAllOrders(fetchedOrders, url) {
+  fetch(url)
     .then((response) => {
       return response.json();
     })
@@ -43,6 +29,20 @@ function displayOrders(orders) {
   ordersUL.innerHTML = orderItems.join('');
 }
 
+// complete: display for search orders
+function searchedOrders(order) {
+  const orders = `
+  <li>
+  ${order.email},
+  ${order.type},
+  ${order.size},
+  ${order.price}
+</li>
+  `;
+
+  ordersUL.innerHTML = orders;
+}
+
 // complete: create order function
 function createOrders(order) {
   fetch(GET_ALL_ORDERS_URL, {
@@ -61,13 +61,16 @@ function createOrders(order) {
 }
 
 // complete: Delete Orders function
-function deleteOrders() {
-  let request = new XMLHttpRequest();
-  request.open(
-    'delete',
-    `https://troubled-peaceful-hell.glitch.me/orders/${deleteEmailText.value}`
-  );
-  request.send();
+function deleteOrders(url) {
+  fetch(url, {
+    method: 'DELETE'
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((result) => {
+      console.log(result);
+    });
 }
 
 // complete: Create variables for HTML element
@@ -87,13 +90,15 @@ const GET_ALL_ORDERS_URL = 'https://troubled-peaceful-hell.glitch.me/orders';
 // call the get orders function and call display in it
 getAllOrders(function (orders) {
   displayOrders(orders);
-});
+}, GET_ALL_ORDERS_URL);
 
-// Bug: Get order by email
+// complete: Get order by email
 saveBtn.addEventListener('click', function () {
-  getUserOrders(function (orders) {
-    displayOrders(orders);
-  });
+  const searchEmailText = document.getElementById('searchEmailText');
+  const GET_USER_ORDERS_URL = `https://troubled-peaceful-hell.glitch.me/orders/${searchEmailText.value}`;
+  getAllOrders(function (orders) {
+    searchedOrders(orders);
+  }, GET_USER_ORDERS_URL);
 });
 
 // complete: Create new order
@@ -115,5 +120,7 @@ submitOrderBtn.addEventListener('click', function () {
 
 // complete: Delete Order by email
 deleteOrderBtn.addEventListener('click', function () {
-  deleteOrders();
+  const deleteEmailText = document.getElementById('deleteEmailText');
+  const DELETE_USER_ORDERS_URL = `https://troubled-peaceful-hell.glitch.me/orders/${deleteEmailText.value}`;
+  deleteOrders(DELETE_USER_ORDERS_URL);
 });
