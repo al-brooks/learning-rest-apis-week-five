@@ -30,7 +30,7 @@ function displayNewsStories(storyDetails) {
     `
         <article class = "newsStory">
             <span class = "title">${storyDetails.title}</span>
-            <span class = "url">${storyDetails.url}</span>
+            <a class = "url" href="${storyDetails.url}">Read Story Here</a>
             <span class = "author">${storyDetails.by}</span>
             <span class = "time">${storyDetails.time}</span>
         </article>
